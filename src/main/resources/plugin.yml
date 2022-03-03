@@ -1,0 +1,5 @@
+name: AdvancedGuild
+version: '${project.version}'
+main: krmcplugins.kokored.website.advancedguild.AdvancedGuild
+api-version: 1.18
+authors: [ Koko_red7214 ]
