@@ -1,5 +1,6 @@
-name: AdvancedGuild
+name: KrFamily_KrGuilds
 version: '${project.version}'
-main: krmcplugins.kokored.website.advancedguild.AdvancedGuild
+main: krmcplugins.kokored.website.krguilds.KrGuilds
 api-version: 1.18
 authors: [ Koko_red7214 ]
+softdepend: [ PlaceholderAPI ]

@@ -1,8 +1,8 @@
-package krmcplugins.kokored.website.advancedguild;
+package krmcplugins.kokored.website.krguilds;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class AdvancedGuild extends JavaPlugin {
+public final class KrGuilds extends JavaPlugin {
 
     @Override
     public void onEnable() {

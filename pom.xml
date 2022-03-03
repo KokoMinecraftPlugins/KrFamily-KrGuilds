@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>krmcplugins.kokored.website</groupId>
-    <artifactId>AdvancedGuild</artifactId>
+    <artifactId>KrFamily_KrGuilds</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>AdvancedGuild</name>
+    <name>KrFamily_KrGuilds</name>
 
     <properties>
         <java.version>1.8</java.version>
