@@ -10,6 +10,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import krmcplugins.kokored.website.krcore.KrCore;
+import krmcplugins.kokored.website.krguilds.api.GuildAPI;
 import krmcplugins.kokored.website.krguilds.command.Guild;
 import krmcplugins.kokored.website.krguilds.dependency.AdGUI;
 import krmcplugins.kokored.website.krguilds.util.Log;
@@ -22,6 +23,7 @@ public final class KrGuilds extends JavaPlugin {
     Boolean adgui_enable;
     Connection connection;
     Guild guild_command;
+    GuildAPI guildAPI;
     Log log;
     Message message;
 
@@ -42,6 +44,7 @@ public final class KrGuilds extends JavaPlugin {
         message = new Message();
 
         guild_command = new Guild(this);
+        guildAPI = new GuildAPI(this);
 
     }
 

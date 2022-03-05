@@ -2,8 +2,10 @@ package krmcplugins.kokored.website.krguilds.command.guilds;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import krmcplugins.kokored.website.krguilds.api.GuildAPI;
 import krmcplugins.kokored.website.krguilds.util.GuildCommand;
 
 public class Create extends GuildCommand {
@@ -14,10 +16,8 @@ public class Create extends GuildCommand {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        // TODO Auto-generated method stub
-        return false;
+        GuildAPI.createGuildADGToggle((Player) sender, false);
+        return true;
     }
-
-    
     
 }

@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import krmcplugins.kokored.website.krguilds.KrGuilds;
+import krmcplugins.kokored.website.krguilds.command.guilds.Create;
 import krmcplugins.kokored.website.krguilds.command.guilds.Info;
 import krmcplugins.kokored.website.krguilds.util.GuildCommand;
 import krmcplugins.kokored.website.krguilds.util.Message;
@@ -32,6 +33,7 @@ public class Guild implements TabExecutor {
         Bukkit.getPluginCommand("guilds").setExecutor(this);
         Bukkit.getPluginCommand("guilds").setTabCompleter(this);
         
+        guilds_commands.add(new Create("create", "krfamily.krguilds.commands.guilds.create", "/g create <name> <description>", msgc.G_CREATE_USAGE, plugin));
         guilds_commands.add(new Info("info", "krfamily.krguilds.commands.guilds.info", "/g info", msgc.G_INFO_USAGE, plugin));
     }
 

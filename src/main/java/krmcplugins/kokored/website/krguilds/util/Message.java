@@ -11,5 +11,6 @@ public class Message {
     // === Command ===
     public final String G_ERROR = "G_ERROR";
     public final String G_INFO_USAGE = "G_INFO_USAGE";
+    public final String G_CREATE_USAGE = "G_CREATE_USAGE";
     
 }

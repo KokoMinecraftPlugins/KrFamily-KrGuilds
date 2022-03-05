@@ -1,7 +1,12 @@
 package krmcplugins.kokored.website.krguilds.dependency;
 
-import org.bukkit.event.EventHandler;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.bukkit.event.EventHandler;
+import org.bukkit.inventory.ItemStack;
+
+import krmcplugins.kokored.website.krguilds.api.GuildAPI;
 import me.leoko.advancedgui.utils.Layout;
 import me.leoko.advancedgui.utils.LayoutExtension;
 import me.leoko.advancedgui.utils.components.CheckComponent;
@@ -38,9 +43,12 @@ public class AdGUI implements LayoutExtension {
             GUILD_CREATE_BUTTON_CONFIRM = GUILD_CREATE_TREE.locate(GUILD_CREATE_BUTTON_CONFIRM_ID, CheckComponent.class);
             GUILD_CREATE_BUTTON_CANCEL = GUILD_CREATE_TREE.locate(GUILD_CREATE_BUTTON_CANCEL_ID, CheckComponent.class);
 
-            GUILD_CREATE_TREE.locate(GUILD_CREATE_BUTTON_CONFIRM_ID).setClickAction((context, player, primaryTrigger) ->
-                player.sendMessage(GUILD_CREATE_INPUT_GUILD_NAME.locateOn(context).getInput())
-            );
+            GUILD_CREATE_TREE.locate(GUILD_CREATE_BUTTON_CONFIRM_ID).setClickAction((context, player, primaryTrigger) -> {
+                GuildAPI.createGuild(player, GUILD_CREATE_INPUT_GUILD_NAME.getInput(), GUILD_CREATE_INPUT_GUILD_DESCRIPTION.getInput());
+            });
+            GUILD_CREATE_TREE.locate(GUILD_CREATE_BUTTON_CANCEL_ID).setClickAction((context, player, primaryTrigger) -> {
+                GuildAPI.createGuildADGToggle(player, true);
+            });
         }
     }
     
