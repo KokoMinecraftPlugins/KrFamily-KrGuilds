@@ -3,4 +3,12 @@ version: '${project.version}'
 main: krmcplugins.kokored.website.krguilds.KrGuilds
 api-version: 1.18
 authors: [ Koko_red7214 ]
-softdepend: [ PlaceholderAPI ]
+depend:
+  - KrFamily_KrCore
+softdepend:
+  - AdvancedGUI
+
+commands:
+  guilds:
+    aliases: [ guild, g ]
+    permission: krfamily.krguilds.commands.guilds

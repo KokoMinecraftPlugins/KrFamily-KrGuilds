@@ -61,6 +61,14 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>leoko-dev</id>
+            <url>https://repo.leoko.dev/releases</url>
+        </repository>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
     </repositories>
 
     <dependencies>
@@ -69,6 +77,19 @@
             <artifactId>spigot-api</artifactId>
             <version>1.18.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.leoko.advancedgui</groupId>
+            <artifactId>AdvancedGUI</artifactId>
+            <version>2.2.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>krmcplugins.kokored.website</groupId>
+            <artifactId>KrFamily_KrCore</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/KrFamily_KrCore-1.0.0.jar</systemPath>
         </dependency>
     </dependencies>
 </project>
