@@ -27,7 +27,7 @@ public class Guild implements TabExecutor {
 
     public Guild(KrGuilds krGuilds) {
         this.krGuilds = krGuilds;
-        this.plugin = krGuilds.getIns();
+        this.plugin = KrGuilds.getPlugin();
         this.msgc = krGuilds.getMessageConfig();
 
         Bukkit.getPluginCommand("guilds").setExecutor(this);
