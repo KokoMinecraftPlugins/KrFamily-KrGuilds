@@ -17,10 +17,20 @@ public class GuildAPI {
     private static Map<Player, ItemStack[]> adguiToggle = new HashMap<>();
 
     public GuildAPI(KrGuilds krGuilds) {
-        this.krGuilds = krGuilds;
+        GuildAPI.krGuilds = krGuilds;
     }
     
     public static Boolean createGuild(Player owner, String gname, String description) {
+        gname = gname.replace(" ", "");
+        description = description.replace(" ", "");
+
+        owner.sendMessage(gname);
+        owner.sendMessage(description);
+
+        if (gname.isEmpty() || description.isEmpty()) {
+            krGuilds.sendMessage(owner, "Guild name cannot be empty");
+        }
+
         return false;
     }
 
