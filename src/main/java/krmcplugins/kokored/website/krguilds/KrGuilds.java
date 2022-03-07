@@ -1,5 +1,6 @@
 package krmcplugins.kokored.website.krguilds;
 
+import java.io.IOException;
 import java.sql.Connection;
 
 import org.bukkit.Bukkit;
@@ -12,7 +13,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import krmcplugins.kokored.website.krcore.KrCore;
 import krmcplugins.kokored.website.krguilds.api.GuildAPI;
 import krmcplugins.kokored.website.krguilds.command.Guild;
+import krmcplugins.kokored.website.krguilds.database.TableCreate;
 import krmcplugins.kokored.website.krguilds.dependency.AdGUI;
+import krmcplugins.kokored.website.krguilds.util.Config;
+import krmcplugins.kokored.website.krguilds.util.ConfigUtil;
 import krmcplugins.kokored.website.krguilds.util.Log;
 import krmcplugins.kokored.website.krguilds.util.Message;
 import krmcplugins.kokored.website.krguilds.util.Metrics;
@@ -22,26 +26,34 @@ public final class KrGuilds extends JavaPlugin {
 
     Boolean adgui_enable;
     Connection connection;
+    Config messageConfig;
     Guild guild_command;
     GuildAPI guildAPI;
     Log log;
-    Message message;
 
     @Override
     public void onEnable() {
 
+        new Metrics(this, 14536);
+
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
+        messageConfig = new Config();
+        log = new Log();
 
         if (getConfig().getBoolean("AdvancedGUI.enable") && Bukkit.getPluginManager().getPlugin("AdvancedGUI") != null) {
             LayoutManager.getInstance().registerLayoutExtension(new AdGUI(), this);
             adgui_enable = true;
         }
 
-        new Metrics(this, 14536);
+        try {
+            ConfigUtil.migrateConfigs("message.yml", null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         connection = KrCore.getMySQL();
-        log = new Log();
-        message = new Message();
+        new TableCreate(this);
 
         guild_command = new Guild(this);
         guildAPI = new GuildAPI(this);
@@ -53,18 +65,22 @@ public final class KrGuilds extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    public Plugin getIns() {
-        return this;
+    public static Plugin getPlugin() {
+        return getPlugin(KrGuilds.class);
     }
-    public Message getMessageConfig() {
-        return message;
+    public Connection getMySQL() {
+        return connection;
     }
+    public Log getLog() {
+        return log;
+    }
+
     public void sendMessage(Player player, String messagee) {
         if (player == null) return;
         if (!(player.isOnline())) return;
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', message.PREFIX + "&r" + messagee));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', Message.PREFIX + "&r" + messagee));
     }
     public void sendMessage(CommandSender sender, String messagee) {
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message.PREFIX + "&r" + messagee));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Message.PREFIX + "&r" + messagee));
     }
 }

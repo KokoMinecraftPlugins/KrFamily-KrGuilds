@@ -1,6 +1,12 @@
-PREFIX: ""
-COMMAND_NOT_FOUND: ""
-NO_PERMISSION: ""
-REQUIRE_ARGS: ""
-G_ERROR: ""
-G_INFO_USAGE: ""
+# Test
+#test
+#
+PREFIX: "&f[&bKr&2Guilds&f] "
+COMMAND_NOT_FOUND: "&cCommand not found!"
+NO_PERMISSION: "&cYou don't have permission to use this command!"
+REQUIRE_ARGS: "&cNo enough arguments! Please read the usage!"
+G_ERROR: "&dUnknown error! Please read the usage and try again!"
+G_INFO_DESC: "info"
+G_CREATE_DESC: "create"
+G_CREATE_NAME_EMPTY: "&eGuild name can not be empty!"
+G_CREATE_DESC_EMPTY: "&eGuild description can not be empty!"

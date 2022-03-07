@@ -21,49 +21,47 @@ public class Guild implements TabExecutor {
 
     KrGuilds krGuilds;
     Plugin plugin;
-    Message msgc;
     
     List<GuildCommand> guilds_commands = new ArrayList<>();
 
     public Guild(KrGuilds krGuilds) {
         this.krGuilds = krGuilds;
         this.plugin = KrGuilds.getPlugin();
-        this.msgc = krGuilds.getMessageConfig();
 
         Bukkit.getPluginCommand("guilds").setExecutor(this);
         Bukkit.getPluginCommand("guilds").setTabCompleter(this);
         
-        guilds_commands.add(new Create("create", "krfamily.krguilds.commands.guilds.create", "/g create <name> <description>", msgc.G_CREATE_USAGE, plugin));
-        guilds_commands.add(new Info("info", "krfamily.krguilds.commands.guilds.info", "/g info", msgc.G_INFO_USAGE, plugin));
+        guilds_commands.add(new Create("create", "krfamily.krguilds.commands.guilds.create", "/g create <name> <description>", Message.G_CREATE_USAGE, plugin));
+        guilds_commands.add(new Info("info", "krfamily.krguilds.commands.guilds.info", "/g info", Message.G_INFO_USAGE, plugin));
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            krGuilds.sendMessage(sender, msgc.REQUIRE_ARGS);
+            krGuilds.sendMessage(sender, Message.REQUIRE_ARGS);
             return true;
         }
         
         GuildCommand gcmds = getCommand(args[0]);
 
         if (gcmds == null) {
-            krGuilds.sendMessage(sender, msgc.COMMAND_NOT_FOUND);
+            krGuilds.sendMessage(sender, Message.COMMAND_NOT_FOUND);
             return true;
         }
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (!(player.hasPermission(gcmds.getPermission()))) {
-                krGuilds.sendMessage(sender, msgc.NO_PERMISSION);
+                krGuilds.sendMessage(sender, Message.NO_PERMISSION);
                 return true;
             }
             if (gcmds.onCommand(sender, command, label, args) == false) {
-                krGuilds.sendMessage(sender, msgc.G_ERROR);
+                krGuilds.sendMessage(sender, Message.G_ERROR);
                 krGuilds.sendMessage(sender, gcmds.getUsage());
                 return true;
             }
         }else if (sender instanceof ConsoleCommandSender) {
             if (gcmds.onCommand(sender, command, label, args) == false) {
-                krGuilds.sendMessage(sender, msgc.G_ERROR);
+                krGuilds.sendMessage(sender, Message.G_ERROR);
                 krGuilds.sendMessage(sender, gcmds.getUsage());
                 return true;
             }
