@@ -87,9 +87,9 @@
         <dependency>
             <groupId>krmcplugins.kokored.website</groupId>
             <artifactId>KrFamily_KrCore</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/KrFamily_KrCore-1.0.0.jar</systemPath>
+            <systemPath>${basedir}/lib/KrFamily_KrCore-1.0.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
