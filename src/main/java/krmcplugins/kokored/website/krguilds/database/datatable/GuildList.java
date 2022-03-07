@@ -38,17 +38,17 @@ public class GuildList {
         try {
             PreparedStatement psSet = KrCore.getMySQL().prepareStatement(
             "INSERT INTO " + KrCore.getSQLName() + "." + table +
-            "(name, description, owner_uuid, owner_dpname, max_member, guild_bank, guild_exp, public_join, create_date) VALUES (?,?,?,?,?,?,?,?,?);");
+            "(name, description, owner_uuid, owner_dpname, now_member, max_member, guild_bank, guild_exp, public_join, create_date) VALUES (?,?,?,?,?,?,?,?,?,?);");
             psSet.setString(1, name);
             psSet.setString(2, description);
             psSet.setString(3, owner_uuid);
             psSet.setString(4, owner_dpname);
-            psSet.setInt(5, max_member);
-            psSet.setDouble(6, guild_bank);
-            psSet.setDouble(7, guild_exp);
-            psSet.setBoolean(8, public_join);
-            psSet.setLong(9, TimeUtil.getMSTime());
-            Bukkit.getLogger().info(TimeUtil.getMSTime() + "");
+            psSet.setInt(5, 1);
+            psSet.setInt(6, max_member);
+            psSet.setDouble(7, guild_bank);
+            psSet.setDouble(8, guild_exp);
+            psSet.setBoolean(9, public_join);
+            psSet.setLong(10, TimeUtil.getMSTime());
             psSet.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

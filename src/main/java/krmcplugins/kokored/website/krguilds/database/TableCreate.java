@@ -31,6 +31,7 @@ public class TableCreate {
             "description CHAR(30) NOT NULL," +
             "owner_uuid CHAR(36) NOT NULL," +
             "owner_dpname CHAR(16) NOT NULL," +
+            "now_member INT(10) unsigned NOT NULL," +
             "max_member INT(10) unsigned NOT NULL," +
             "guild_bank DOUBLE NOT NULL," +
             "guild_exp DOUBLE NOT NULL," +
