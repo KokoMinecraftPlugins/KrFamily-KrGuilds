@@ -25,9 +25,6 @@ public class GuildAPI {
         gname = gname.replace(" ", "");
         description = description.replace(" ", "");
 
-        owner.sendMessage(gname);
-        owner.sendMessage(description);
-
         if (gname.isEmpty()) {
             krGuilds.sendMessage(owner, Message.G_CREATE_NAME_EMPTY);
             return "G_CREATE_NAME_EMPTY";
@@ -49,6 +46,7 @@ public class GuildAPI {
         krGuilds.getConfig().getInt("Setting.GuildDefault.maxmember"), krGuilds.getConfig().getDouble("Setting.GuildDefault.guildbank"),
         krGuilds.getConfig().getDouble("Setting.GuildDefault.guildexp"), krGuilds.getConfig().getBoolean("Setting.GuildDefault.publicjoin"));
 
+        krGuilds.sendMessage(owner, "&aDone!");
         return "DONE";
     }
 

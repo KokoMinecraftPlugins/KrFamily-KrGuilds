@@ -4,7 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.bukkit.Bukkit;
+
 import krmcplugins.kokored.website.krcore.KrCore;
+import krmcplugins.kokored.website.krguilds.util.Log;
 import krmcplugins.kokored.website.krguilds.util.TimeUtil;
 
 public class GuildList {
@@ -44,7 +47,8 @@ public class GuildList {
             psSet.setDouble(6, guild_bank);
             psSet.setDouble(7, guild_exp);
             psSet.setBoolean(8, public_join);
-            psSet.setInt(9, TimeUtil.getMSTime());
+            psSet.setLong(9, TimeUtil.getMSTime());
+            Bukkit.getLogger().info(TimeUtil.getMSTime() + "");
             psSet.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
