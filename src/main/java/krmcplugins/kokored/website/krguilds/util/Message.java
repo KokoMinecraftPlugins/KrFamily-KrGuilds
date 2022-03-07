@@ -13,6 +13,8 @@ public class Message {
     public static final String G_INFO_USAGE = Config.get().getString("G_INFO_DESC");
     public static final String G_CREATE_USAGE = Config.get().getString("G_CREATE_DESC");
     public static final String G_CREATE_NAME_EMPTY = Config.get().getString("G_CREATE_NAME_EMPTY");
+    public static final String G_CREATE_NAME_TOO_LONG = Config.get().getString("G_CREATE_NAME_TOO_LONG");
     public static final String G_CREATE_DESC_EMPTY = Config.get().getString("G_CREATE_DESC_EMPTY");
+    public static final String G_CREATE_DESC_TOO_LONG = Config.get().getString("G_CREATE_DESC_TOO_LONG");
     
 }

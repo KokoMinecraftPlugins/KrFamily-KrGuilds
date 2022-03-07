@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 
 import krmcplugins.kokored.website.krguilds.KrGuilds;
 import krmcplugins.kokored.website.krguilds.dependency.AdGUI;
+import krmcplugins.kokored.website.krguilds.util.Message;
 import me.leoko.advancedgui.manager.GuiItemManager;
 import me.leoko.advancedgui.utils.GuiItemInstance;
 
@@ -20,18 +21,35 @@ public class GuildAPI {
         GuildAPI.krGuilds = krGuilds;
     }
     
-    public static Boolean createGuild(Player owner, String gname, String description) {
+    public static String createGuild(Player owner, String gname, String description) {
         gname = gname.replace(" ", "");
         description = description.replace(" ", "");
 
         owner.sendMessage(gname);
         owner.sendMessage(description);
 
-        if (gname.isEmpty() || description.isEmpty()) {
-            krGuilds.sendMessage(owner, "Guild name cannot be empty");
+        if (gname.isEmpty()) {
+            krGuilds.sendMessage(owner, Message.G_CREATE_NAME_EMPTY);
+            return "G_CREATE_NAME_EMPTY";
+        }
+        if (description.isEmpty()) {
+            krGuilds.sendMessage(owner, Message.G_CREATE_DESC_EMPTY);
+            return "G_CREATE_DESC_EMPTY";
+        }
+        if (gname.length() > 12) {
+            krGuilds.sendMessage(owner, Message.G_CREATE_NAME_TOO_LONG);
+            return "G_CREATE_NAME_TOO_LONG";
+        }
+        if (gname.length() > 30) {
+            krGuilds.sendMessage(owner, Message.G_CREATE_DESC_TOO_LONG);
+            return "G_CREATE_DESC_TOO_LONG";
         }
 
-        return false;
+        DatabaseAPI.createGuild(gname, description, owner.getUniqueId().toString(), owner.getName(),
+        krGuilds.getConfig().getInt("Setting.GuildDefault.maxmember"), krGuilds.getConfig().getDouble("Setting.GuildDefault.guildbank"),
+        krGuilds.getConfig().getDouble("Setting.GuildDefault.guildexp"), krGuilds.getConfig().getBoolean("Setting.GuildDefault.publicjoin"));
+
+        return "DONE";
     }
 
     public static Boolean createGuildADGToggle(Player player, Boolean isCancel) {

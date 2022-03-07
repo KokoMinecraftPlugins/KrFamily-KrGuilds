@@ -1,2 +1,9 @@
+Setting:
+  GuildDefault:
+    maxmember: 125
+    guildbank: 0.0
+    guildexp: 0.0
+    publicjoin: false
+
 AdvancedGUI:
   enable: true

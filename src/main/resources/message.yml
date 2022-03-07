@@ -1,6 +1,3 @@
-# Test
-#test
-#
 PREFIX: "&f[&bKr&2Guilds&f] "
 COMMAND_NOT_FOUND: "&cCommand not found!"
 NO_PERMISSION: "&cYou don't have permission to use this command!"
@@ -9,4 +6,6 @@ G_ERROR: "&dUnknown error! Please read the usage and try again!"
 G_INFO_DESC: "info"
 G_CREATE_DESC: "create"
 G_CREATE_NAME_EMPTY: "&eGuild name can not be empty!"
+G_CREATE_NAME_TOO_LONG: "&eThe guild name you input is too long. Because system setting. It can only be 12 text."
 G_CREATE_DESC_EMPTY: "&eGuild description can not be empty!"
+G_CREATE_NAME_TOO_LONG: "&eThe guild description you input is too long. Because system setting. It can only be 30 text."
