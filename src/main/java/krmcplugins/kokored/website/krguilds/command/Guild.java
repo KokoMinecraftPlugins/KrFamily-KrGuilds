@@ -26,13 +26,13 @@ public class Guild implements TabExecutor {
 
     public Guild(KrGuilds krGuilds) {
         this.krGuilds = krGuilds;
-        this.plugin = KrGuilds.getPlugin();
+        this.plugin = KrGuilds.getPlug();
 
         Bukkit.getPluginCommand("guilds").setExecutor(this);
         Bukkit.getPluginCommand("guilds").setTabCompleter(this);
         
-        guilds_commands.add(new Create("create", "krfamily.krguilds.commands.guilds.create", "/g create <name> <description>", Message.G_CREATE_USAGE, plugin));
-        guilds_commands.add(new Info("info", "krfamily.krguilds.commands.guilds.info", "/g info", Message.G_INFO_USAGE, plugin));
+        guilds_commands.add(new Create("create", "krfamily.krguilds.commands.guilds.create", "/g create <name> <description>", Message.G_CREATE_USAGE));
+        guilds_commands.add(new Info("info", "krfamily.krguilds.commands.guilds.info", "/g info", Message.G_INFO_USAGE));
     }
 
     @Override

@@ -1,7 +1,16 @@
 package krmcplugins.kokored.website.krguilds.dependency;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.ItemFrame;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 
+import krmcplugins.kokored.website.krguilds.KrGuilds;
 import krmcplugins.kokored.website.krguilds.api.GuildAPI;
 import me.leoko.advancedgui.utils.Layout;
 import me.leoko.advancedgui.utils.LayoutExtension;
@@ -27,6 +36,42 @@ public class AdGUI implements LayoutExtension {
     CheckComponent
         GUILD_CREATE_BUTTON_CONFIRM,
         GUILD_CREATE_BUTTON_CANCEL;
+    
+    public AdGUI() {
+        Bukkit.getPluginManager().registerEvents(this, KrGuilds.getPlug());
+    }
+
+    @EventHandler
+    public void onPlayerDropItem(PlayerDropItemEvent event) {
+        if (GuildAPI.adguiToggle.containsKey(event.getPlayer())) {
+            event.setCancelled(true);
+        }
+    }
+    @EventHandler
+    public void onEntityPickupItem(EntityPickupItemEvent event) {
+        if (event.getEntity() instanceof Player && GuildAPI.adguiToggle.containsKey((Player) event.getEntity())) {
+            event.setCancelled(true);
+        }
+    }
+    @EventHandler
+    public void onInventoryClickE(InventoryClickEvent event) {
+        if (GuildAPI.adguiToggle.containsKey(event.getWhoClicked())) {
+            event.setCancelled(true);
+            event.getWhoClicked().closeInventory();
+        }
+    }
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        if (event.getRightClicked() instanceof ItemFrame && GuildAPI.adguiToggle.containsKey(event.getPlayer())) {
+            event.setCancelled(true);
+        }
+    }
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        if (GuildAPI.adguiToggle.containsKey(event.getEntity())) {
+            event.setKeepInventory(true);
+        }
+    }
 
     @Override
     @EventHandler

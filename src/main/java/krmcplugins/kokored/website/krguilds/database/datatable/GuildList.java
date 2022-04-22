@@ -4,10 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.bukkit.Bukkit;
-
 import krmcplugins.kokored.website.krcore.KrCore;
-import krmcplugins.kokored.website.krguilds.util.Log;
 import krmcplugins.kokored.website.krguilds.util.TimeUtil;
 
 public class GuildList {
@@ -33,7 +30,7 @@ public class GuildList {
         }
     }
 
-    public void createNewGuild(String name, String description, String owner_uuid, String owner_dpname, Integer max_member, Double guild_bank,
+    public Boolean createNewGuild(String name, String description, String owner_uuid, String owner_dpname, Integer max_member, Double guild_bank,
     Double guild_exp, Boolean public_join) {
         try {
             PreparedStatement psSet = KrCore.getMySQL().prepareStatement(
@@ -50,8 +47,10 @@ public class GuildList {
             psSet.setBoolean(9, public_join);
             psSet.setLong(10, TimeUtil.getMSTime());
             psSet.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
     

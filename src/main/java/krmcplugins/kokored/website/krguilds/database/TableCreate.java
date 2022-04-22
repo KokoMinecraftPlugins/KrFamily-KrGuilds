@@ -5,6 +5,7 @@ import java.sql.Statement;
 
 import krmcplugins.kokored.website.krcore.KrCore;
 import krmcplugins.kokored.website.krguilds.KrGuilds;
+import krmcplugins.kokored.website.krguilds.util.Log;
 
 public class TableCreate {
 
@@ -13,14 +14,14 @@ public class TableCreate {
 
     public TableCreate(KrGuilds krGuilds) {
         this.krGuilds = krGuilds;
-        krGuilds.getLog().info("Loading KrGuilds mysql data tables");
+        Log.info("Loading KrGuilds mysql data tables");
         
         try {
             guilds_list();
 
-            krGuilds.getLog().info("Data table loaded!");
+            Log.info("Data table loaded!");
         } catch (SQLException e) {
-            krGuilds.getLog().error("Fail to load Data table: " + e.getMessage());
+            Log.error("Fail to load Data table: " + e.getMessage());
         }
     }
     
@@ -36,7 +37,7 @@ public class TableCreate {
             "guild_bank DOUBLE NOT NULL," +
             "guild_exp DOUBLE NOT NULL," +
             "public_join BOOLEAN NOT NULL DEFAULT 0," +
-            "create_date INT(17) unsigned NOT NULL" +
+            "create_date BIGINT unsigned NOT NULL" +
             ") CHARSET=utf8;";
         table.execute(table_code);
     }

@@ -10,9 +10,9 @@ public class DatabaseAPI {
         return guildList.isGuildExist(name);
     }
 
-    public static void createGuild(String name, String description, String owner_uuid, String owner_dpname, Integer max_member, Double guild_bank,
+    public static Boolean createGuild(String name, String description, String owner_uuid, String owner_dpname, Integer max_member, Double guild_bank,
     Double guild_exp, Boolean public_join) {
-        guildList.createNewGuild(name, description, owner_uuid, owner_dpname, max_member, guild_bank, guild_exp, public_join);
+        return guildList.createNewGuild(name, description, owner_uuid, owner_dpname, max_member, guild_bank, guild_exp, public_join);
     }
     
 }
